@@ -20,7 +20,7 @@ let package = Package(
             teamIdentifier: "789TVWUH35",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .rocket),
+            appIcon: .asset("AppIcon"),
             accentColor: .presetColor(.brown),
             supportedDeviceFamilies: [
                 .pad,
@@ -31,13 +31,17 @@ let package = Package(
                 .landscapeRight,
                 .landscapeLeft,
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
-            ]
+            ],
+            additionalInfoPlistContentFilePath: "SupportingInfo.plist"
         )
     ],
     targets: [
         .executableTarget(
             name: "AppModule",
-            path: "."
+            path: ".",
+            resources: [
+                .process("Supporting/ASLImages")
+            ]
         )
     ],
     swiftLanguageModes: [.v6]
